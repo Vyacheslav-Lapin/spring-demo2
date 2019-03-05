@@ -18,18 +18,18 @@ public class SpringDemo2Application {
     SpringApplication.run(SpringDemo2Application.class, args);
   }
 
-  @Bean
-  Person person(Country country, List<String> contacts) {
-    //noinspection unchecked
-    return UsualPerson.builder()
-             .age(35)
-             .height(1.78F)
-             .isProgrammer(true)
-             .name("John Smith")
-             .country(country)
-             .contacts(contacts)
-             .build();
-  }
+//  @Bean
+//  Person person(Country country, List<String> contacts) {
+//    // noinspection unchecked
+//    return UsualPerson.builder()
+//             .age(35)
+//             .height(1.78F)
+//             .isProgrammer(true)
+//             .name("John Smith")
+//             .country(country)
+//             .contacts(contacts)
+//             .build();
+//  }
 
   @Bean
   List<String> contacts() {
