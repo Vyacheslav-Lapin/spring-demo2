@@ -5,8 +5,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ru.academy.springdemo2.model.Country;
 import ru.academy.springdemo2.model.UsualPerson;
 
-import java.util.Arrays;
-
 import static lombok.AccessLevel.PRIVATE;
 import static org.junit.Assert.assertEquals;
 
@@ -26,17 +24,17 @@ public class HelloWorldTest {
   }
 
   static UsualPerson getExpectedPerson() {
-    return new UsualPerson()
-             .setAge(35)
-             .setHeight(1.78F)
-             .setProgrammer(true)
-             .setName("John Smith")
-             .setCountry(new Country()
-                           .setId(1)
-                           .setName("Russia")
-                           .setCodeName("RU"))
-             .setContacts(Arrays.asList(
-               "asd@asd.ru",
-               "+7-234-456-67-89"));
+    return UsualPerson.builder()
+             .age(35)
+             .height(1.78F)
+             .isProgrammer(true)
+             .name("John Smith")
+             .country(Country.builder()
+                        .name("Russia")
+                        .codeName("RU")
+                        .build())
+             .contact("asd@asd.ru")
+             .contact("+7-234-456-67-89")
+             .build();
   }
 }

@@ -1,19 +1,20 @@
 package ru.academy.springdemo2.model;
 
-import lombok.Data;
-import lombok.experimental.FieldDefaults;
+import lombok.Builder;
+import lombok.Builder.Default;
+import lombok.Singular;
+import lombok.Value;
 
 import java.util.List;
 
-import static lombok.AccessLevel.PRIVATE;
-
-@Data
+@Value
+@Builder
 //@Entity
-@FieldDefaults(level = PRIVATE)
 public class UsualPerson implements Person {
 
 //  @Id
-  int id;
+  @Default
+  int id = 1;
 
   String name;
 
@@ -25,6 +26,7 @@ public class UsualPerson implements Person {
   float height;
   boolean isProgrammer;
 
+  @Singular
   List<String> contacts;
 
   @Override

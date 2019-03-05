@@ -1,27 +1,18 @@
 package ru.academy.springdemo2.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import lombok.experimental.FieldDefaults;
+import lombok.Builder;
+import lombok.Builder.Default;
+import lombok.Value;
 
-import static lombok.AccessLevel.PRIVATE;
-
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@RequiredArgsConstructor
-@FieldDefaults(level = PRIVATE)
+@Value
+@Builder
 public class Country {
 
-  int id;
+  @Default
+  int id = 1;
 
-  @NonNull
   String name;
 
-  @NonNull
   String codeName;
 }
 
