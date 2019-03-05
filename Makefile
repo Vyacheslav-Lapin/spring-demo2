@@ -13,3 +13,10 @@ test:
 
 update:
 	./mvnw versions:update-properties versions:display-plugin-updates
+
+delombok: clean
+	mkdir -p ./target/generated-sources/delombok ./target/generated-test-sources/delombok
+	./mvnw lombok:delombok lombok:testDelombok
+
+clean:
+	./mvnw clean
