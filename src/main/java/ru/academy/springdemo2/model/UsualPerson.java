@@ -1,7 +1,6 @@
 package ru.academy.springdemo2.model;
 
 import lombok.Builder;
-import lombok.Builder.Default;
 import lombok.Singular;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -15,7 +14,6 @@ import java.util.List;
 public class UsualPerson implements Person {
 
   //  @Id
-  @Default
   int id = 1;
 
   String name;
@@ -29,12 +27,12 @@ public class UsualPerson implements Person {
   float height;
   boolean isProgrammer;
 
+  boolean isBroke = false;
+
   @Singular
   List<String> contacts;
 
   public UsualPerson(
-    @Value("1")
-      int id,
     @Value("John Smith")
       String name,
     Country country,
@@ -46,7 +44,6 @@ public class UsualPerson implements Person {
       boolean isProgrammer,
     List<String> contacts) {
 
-    this.id = id;
     this.name = name;
     this.country = country;
     this.age = age;

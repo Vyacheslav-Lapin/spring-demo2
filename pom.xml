@@ -24,6 +24,8 @@
     <spring-boot.version>2.1.3.RELEASE</spring-boot.version>
 
     <vavr.version>0.10.0</vavr.version>
+    <checker.version>2.6.0</checker.version>
+    <annotations.version>17.0.0</annotations.version>
 
     <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
     <maven.compiler.release>${java.version}</maven.compiler.release>
@@ -96,6 +98,19 @@
     <dependency>
       <groupId>io.vavr</groupId>
       <artifactId>vavr</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.checkerframework</groupId>
+      <artifactId>checker</artifactId>
+      <version>${checker.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jetbrains</groupId>
+      <artifactId>annotations</artifactId>
+      <version>${annotations.version}</version>
+      <scope>provided</scope>
     </dependency>
   </dependencies>
 

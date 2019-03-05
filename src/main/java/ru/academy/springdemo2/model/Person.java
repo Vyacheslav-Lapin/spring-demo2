@@ -6,4 +6,6 @@ public interface Person {
   String getName();
 
   void sayHello(Person person);
+
+  boolean isBroke();
 }
