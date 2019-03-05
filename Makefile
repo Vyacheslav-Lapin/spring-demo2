@@ -6,7 +6,7 @@ build:
 	./mvnw verify
 
 run:
-	./mvnw spring-boot:start -Dspring.profiles.active=local
+	./mvnw spring-boot:run -Dspring.profiles.active=local
 
 test:
 	./mvnw test
