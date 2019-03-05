@@ -19,7 +19,7 @@ public class SpringDemo2Application {
   }
 
   @Bean
-  Person person(Country country, List contacts) {
+  Person person(Country country, List<String> contacts) {
     //noinspection unchecked
     return UsualPerson.builder()
              .age(35)
@@ -27,7 +27,12 @@ public class SpringDemo2Application {
              .isProgrammer(true)
              .name("John Smith")
              .country(country)
-             .contacts((List<String>) contacts)
+             .contacts(contacts)
              .build();
+  }
+
+  @Bean
+  List<String> contacts() {
+      return List.of("asd@asd.ru", "+7-234-456-67-89");
   }
 }
