@@ -1,50 +1,51 @@
 package ru.academy.springdemo2.aspects;
 
-import lombok.experimental.FieldDefaults;
-import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Service;
 import ru.academy.springdemo2.model.Person;
 
-import static lombok.AccessLevel.PRIVATE;
-
 @Aspect
 @Service
-@FieldDefaults(level = PRIVATE)
 public class Politeness {
 
-  @Pointcut("execution(* sellSquishee(..))")
+  @Pointcut("execution(* sellSquishee(ru.academy.springdemo2.model.Person))")
   public void sellSquishee() {
   }
 
-  @Before("sellSquishee()")
-  public void sayHello(JoinPoint joinPiont) {
-    System.out.println("Hello " + ((Person) joinPiont.getArgs()[0]).getName() + ". How are you doing? \n");
+  @Before("sellSquishee() && args(person)")
+  public void sayHello(Person person) {
+    System.out.printf("Hello %s. How are you doing?\n", person.getName());
   }
 
   @AfterReturning(
-    pointcut = "execution(* sellSquishee(..))",
-    returning = "retVal")
-  public void askOpinion(Drink retVal) {
-    System.out.println("Is " + retVal.getName() + " Good Enough? \n");
+    pointcut = "sellSquishee()",
+    returning = "drink")
+  public void askOpinion(Drink drink) {
+    System.out.printf("Is %s Good Enough?\n", drink.getName());
   }
 
+  @AfterThrowing("sellSquishee()")
   public void sayYouAreNotAllowed() {
-    System.out.println("Hmmm... \n");
+    System.out.println("Hmmm...");
   }
 
+  @After("sellSquishee()")
   public void sayGoodBye() {
-    System.out.println("Good Bye! \n");
+    System.out.println("Good Bye!");
   }
 
+  @Around("sellSquishee()")
   public Object sayPoliteWordsAndSell(ProceedingJoinPoint pjp) throws Throwable {
-    System.out.println("Hi! \n");
+    System.out.println("Hi!");
     Object retVal = pjp.proceed();
-    System.out.println("See you! \n");
+    System.out.println("See you!");
     return retVal;
   }
 

@@ -8,4 +8,6 @@ public interface Person {
   void sayHello(Person person);
 
   boolean isBroke();
+
+  Person withBroke(boolean isBroke);
 }

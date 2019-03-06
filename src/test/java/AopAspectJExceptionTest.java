@@ -6,13 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import ru.academy.springdemo2.SpringDemo2Application;
+import ru.academy.springdemo2.TestUtils;
 import ru.academy.springdemo2.aspects.Bar;
 import ru.academy.springdemo2.aspects.CustomerBrokenException;
 import ru.academy.springdemo2.model.Person;
+import ru.academy.springdemo2.model.UsualPerson;
 
 import static lombok.AccessLevel.PRIVATE;
 import static org.junit.Assert.assertTrue;
-import static ru.academy.springdemo2.TestUtils.fromSystemOutPrintln;
 
 @FieldDefaults(level = PRIVATE)
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -20,24 +21,19 @@ import static ru.academy.springdemo2.TestUtils.fromSystemOutPrintln;
 public class AopAspectJExceptionTest {
 
   @Autowired
-  private Bar bar;
+  Bar bar;
 
   @Autowired
-  private Person customer;
+  Person person;
 
   @Before
-  public void setUp() throws Exception {
-
-//        customer.setBroke(true);
+  public void setUp() {
+    person = person.withBroke(true);
   }
 
   @Test(expected = CustomerBrokenException.class)
   public void testAfterThrowingAdvice() {
-
-    String fromSystemOutPrintln = fromSystemOutPrintln(
-      () -> bar.sellSquishee(customer));
-
-    assertTrue("Customer is not broken ",
-      fromSystemOutPrintln.contains("Hmmm..."));
+    bar.sellSquishee(person);
+    // TODO: 2019-03-06 check sout
   }
 }
